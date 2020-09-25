@@ -9,6 +9,7 @@ for (var i = 0; i < numOfButtons; i++) {
 
     var buttonInnerHTML = this.innerHTML;
     makeSound(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
 
   });
 }
@@ -18,6 +19,7 @@ for (var i = 0; i < numOfButtons; i++) {
 document.addEventListener("keydown", function(event) {
 
   makeSound(event.key);   // Sending key events to function
+  buttonAnimation(event.key);
 });
 
 
@@ -55,6 +57,18 @@ function makeSound(key) {
 
     default: console.log(buttonInnerHTML);
   }
+}
+
+function buttonAnimation(currentKey) {
+
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  // Setting timer to remove hover pressed
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
 
 
